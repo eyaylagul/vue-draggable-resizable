@@ -190,6 +190,7 @@ export default {
 
   data: function () {
     return {
+      _observer: null,
       rawWidth: this.w,
       rawHeight: this.h,
       rawLeft: this.x,
@@ -234,7 +235,19 @@ export default {
     addEvent(document.documentElement, 'mousedown', this.deselect)
     addEvent(document.documentElement, 'touchend touchcancel', this.deselect)
 
-    addEvent(window, 'resize', this.checkParentSize)
+    addEvent(window, 'resize', this.checkParentSize);
+
+
+    //check parent resizing
+    this._observer = new ResizeObserver(() => {
+      setTimeout(() => this.checkParentSize(), 300);
+    });
+
+    this._observer.observe(this.$el.parentNode, {
+      attributes: true,
+      attributeFilter: ['style', 'class']
+    });
+
   },
   beforeDestroy: function () {
     removeEvent(document.documentElement, 'mousedown', this.deselect)
@@ -245,6 +258,9 @@ export default {
     removeEvent(document.documentElement, 'touchend touchcancel', this.deselect)
 
     removeEvent(window, 'resize', this.checkParentSize)
+
+    //remove parent resize observe
+    this._observer.disconnect()
   },
 
   methods: {
