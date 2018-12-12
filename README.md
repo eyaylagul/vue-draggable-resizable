@@ -1,3 +1,23 @@
+# Warnings!
+
+## Modification detail:
+https://github.com/mauricius/vue-draggable-resizable/issues/133#issuecomment-446176024
+
+## Additional (is not effect to component working):
+./src/components/vue-draggable-resizable.css removed
+
+***
+___
+
+
+
+
+
+
+
+
+
+
 <p align="center"><img src="https://rawgit.com/mauricius/vue-draggable-resizable/master/docs/resources/logo.png" alt="logo"></p>
 <h1 align="center">VueDraggableResizable 2</h1>
 
